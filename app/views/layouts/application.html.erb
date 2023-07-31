@@ -9,40 +9,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-<style type="text/css" >
-  nav, footer {
-    background-color: #f9e784;
-    color: #170312; 
-  }
-  .nav-item, .nav-link, .navbar-brand {
-    color: #170312; 
-  }
-
-  .site-link {
-    color: #fff;
-  }
-  body {
-    background-color: #170312 !important; 
-    color: #fff;
-  }
-
-  .card-bg-1 {
-    background-color: #c94277 !important; 
-  }
-
-  .card-bg-2 {
-    background-color: #5ca4a9 !important; 
-  }
-
-  .card-bg-3 {
-    background-color: #f3752b !important; 
-  }
-
-  </style>
-  <header>
-    <%= render "layouts/navbar" %>
-  </header>
   <body>
+    <header>
+      <%= render "layouts/navbar" %>
+    </header>
     <div class="container mt-5">
       
       <%= yield %>
