@@ -1,0 +1,14 @@
+<div style="height: 100vh;" class="d-flex flex-column justify-content-center align-items-center">
+  <div class="p-5 card w-50" style="width: 18rem;">
+    <div class="card-body">
+      <div class="d-flex justify-content-center">
+        <div>
+          <h5 class="card-title">By: <%= @gossip.title %></h5>
+          <h3 class="card-title">By: <%= @gossip.user.first_name %> <%= @gossip.user.last_name %></h3>
+          <p class="card-text"><%= @gossip.content %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="" href="/gossip">Back to index</a>
+</div>

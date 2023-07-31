@@ -1,0 +1,27 @@
+<div class="container">
+  
+  <div class="d-flex flex-column justify-content-evenly">
+    <div class="d-flex justify-content-center">
+      <h1>All Gossip</h1>
+    </div>
+    <div class="d-flex flex-wrap justify-content-evenly">
+      <% @gossips.each do |gossip| %>
+        <div class="p-5 card" style="width: 18rem;">
+          <div class="card-body">
+            <div class="d-flex justify-content-center">
+              <div>
+                <h5 class="card-title"><%= gossip.title %></h5>
+                <p class="card-text">By: <%= gossip.user.last_name %> <%= gossip.user.last_name %></p>
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-evenly pt-5">
+              <%= link_to 'Go to gossip', gossip_path(id: gossip.id), class:'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      
+    </div>
+    <!-- <a href="/gossips/new">Add new gossip</a> -->
+  </div>
+</div>
