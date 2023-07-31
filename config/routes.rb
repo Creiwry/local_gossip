@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'gossip#index'
 
   get '/gossip/:id', to: 'gossip#show', as: 'gossip'
+  get '/users/:id', to: 'users#show', as: 'user'
   get '/contacts', to: 'static#contacts'
   get '/team', to: 'static#team'
   get '/welcome/:name', to: 'static#welcome'

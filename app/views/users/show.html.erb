@@ -1,0 +1,16 @@
+<div style="height: 100vh;" class="d-flex flex-column justify-content-center align-items-center">
+  <div class="p-5 card w-50 card-bg-3" style="width: 18rem;">
+    <div class="card-body">
+      <div class="d-flex justify-content-center">
+        <div>
+          <h3 class="card-title">Name: <%= @user.first_name %> <%= @user.last_name %></h3>
+          <h5 class="card-title">Age: <%= @user.age %></h5>
+          <h5 class="card-title">Email: <%= @user.email %></h5>
+          <h5 class="card-title">City: <%= @user.city.name %></h5>
+          <p class="card-text"><%= @user.description %></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

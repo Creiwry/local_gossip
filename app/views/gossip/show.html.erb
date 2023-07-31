@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-center">
         <div>
           <h3 class="card-title"> <%= @gossip.title %></h3>
-          <h5 class="card-title">By: <%= @gossip.user.first_name %> <%= @gossip.user.last_name %></h5>
+          <h5 class="card-title">By: <%= link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}" , user_path(id: @gossip.user.id)%></h5>
           <p class="card-text"><%= @gossip.content %></p>
           <a class="site-link" href="<%= root_path %>">Back to index</a>
         </div>

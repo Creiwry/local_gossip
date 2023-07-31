@@ -1,0 +1,17 @@
+<footer>
+  <hr>
+  <div class="container">
+    <ul class="nav nav-underline pb-3">
+      <li class="nav-item">
+        <%= link_to 'Home', root_path, class:["nav-link", ('active' if controller_name == 'gossip' && action_name == 'index')] %>
+
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Contacts', contacts_path, class:["nav-link", ('active' if action_name == 'contacts')] %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Team', team_path, class:["nav-link", ('active' if action_name == 'team')] %>
+      </li>
+    </ul>
+  </div>
+</footer>

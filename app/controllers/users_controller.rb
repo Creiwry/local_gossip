@@ -1,12 +1,8 @@
-class GossipController < ApplicationController
+class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
-  def index
-    @gossips = Gossip.all
-  end
-
   def show
-    @gossip = Gossip.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   private
