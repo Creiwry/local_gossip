@@ -9,25 +9,78 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
+<style type="text/css" >
+  nav, footer {
+    background-color: #f9e784;
+    color: #170312; 
+  }
+  .nav-item, .nav-link, .navbar-brand {
+    color: #170312; 
+  }
 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid d-flex justify-content-between">
-      <a class="navbar-brand" href="#">The Gossip Project</a>
-      <div class="navbar-nav w-50 flex-row justify-content-around me-auto mb-2 mb-lg-0">
-        <div class="nav-item">
-          <%= link_to 'Home', root_path, class:'nav-link' %>
+  .site-link {
+    color: #fff;
+  }
+  body {
+    background-color: #170312 !important; 
+    color: #fff;
+  }
+
+  .card-bg-1 {
+    background-color: #c94277 !important; 
+  }
+
+  .card-bg-2 {
+    background-color: #5ca4a9 !important; 
+  }
+
+  .card-bg-3 {
+    background-color: #f3752b !important; 
+  }
+
+  </style>
+  <header>
+    
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container-fluid d-flex">
+        <div class="navbar-nav mb-2 mb-lg-0">
+          <a class="navbar-brand" href="<%= root_path %>">The Gossip Project</a>
         </div>
-        <div class="nav-item">
-          <%= link_to 'Contacts', contacts_path, class:'nav-link' %>
-        </div>
-        <div class="nav-item">
-          <%= link_to 'Team', team_path, class:'nav-link' %>
+        <div class="navbar-nav w-50 flex-row me-auto mb-2 mb-lg-0">
+          <div class="nav-item mx-2">
+            <%= link_to 'Contacts', contacts_path, class:'nav-link' %>
+          </div>
+          <div class="nav-item mx-2">
+            <%= link_to 'Team', team_path, class:'nav-link' %>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
   <body>
-    <%= yield %>
+    <div class="container mt-5">
+      
+      <%= yield %>
+    </div>
+    <footer>
+      <hr>
+      <div class="container">
+        <ul class="nav nav-underline">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Active</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
   </body>
 
 </html>
