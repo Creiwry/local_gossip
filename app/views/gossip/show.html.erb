@@ -6,6 +6,8 @@
           <h3 class="card-title"> <%= @gossip.title %></h3>
           <h5 class="card-title">By: <%= link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}" , user_path(id: @gossip.user.id)%></h5>
           <p class="card-text"><%= @gossip.content %></p>
+          <%= button_to 'Edit', edit_gossip_path(@gossip.id), method: :get, class:'btn btn-warning' %>
+          <%= button_to 'Delete', gossip_path(@gossip.id), method: :delete, class:'btn btn-danger' %>
           <a class="site-link" href="<%= root_path %>">Back to index</a>
         </div>
       </div>

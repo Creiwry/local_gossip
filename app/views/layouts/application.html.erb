@@ -9,10 +9,24 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-  <body>
+  <body data-turbo="false">
     <header>
       <%= render "layouts/navbar" %>
     </header>
+    <div class="container">
+      
+      <% flash.each do |name, type| %>
+        <% puts "name:  #{name}, type:  #{type}" %>
+        <% if name == "notice" %>
+          <%= content_tag :div, type, :class => "alert alert-primary flash_name-#{name}", :role => "notice" %>
+        <% elsif name == "alert" || name == "error" %>
+          <%= content_tag :div, type, :class => "alert alert-danger flash_name-#{name}", :role => "alert" %>
+        <% else %>
+          <%= content_tag :div, type, :class => "alert alert-warning flash_name-#{name}", :role => "warning" %>
+        <% end %>
+      <% end %>
+      
+    </div>
     <div class="container mt-5">
       
       <%= yield %>

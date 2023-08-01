@@ -1,0 +1,10 @@
+<div class="container">
+  <%= form_tag url_for(action: 'create'), method: :post do %>
+    <%= text_field_tag 'gossip[title]' %>
+    <%= text_area_tag 'gossip[content]' %>
+    <%= text_field_tag 'gossip[user_id]' %>
+    <%= submit_tag  "Create post"%>
+
+  <% end %>
+  
+</div>

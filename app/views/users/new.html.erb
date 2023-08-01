@@ -1,0 +1,12 @@
+<div class="container">
+  <%= form_with(model: @users, url: user_path, method: :post) do |form| %>
+    <%= form.text_field :first_name %>
+    <%= form.text_area :last_name %>
+    <%= form.text_field :last_name %>
+    <%= form.text_field :email %>
+    <%= form.text_field :age %>
+    <%= form.submit %>
+
+  <% end %>
+  
+</div>
