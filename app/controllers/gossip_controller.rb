@@ -13,7 +13,7 @@ class GossipController < ApplicationController
   end
 
   def create
-    @gossip = Gossip.new(gossip_params)
+    @gossip = Gossip.new(title: params[:title], content: params[:content], user: User.first)
     if @gossip.save
       flash[:notice] = 'Gossip creation successful'
       redirect_to gossip_path(@gossip.id)

@@ -40,8 +40,17 @@ end
 # end
 
 20.times do
+  sentence = ""
+  while sentence.length < 14
+    word = Faker::Lorem.word
+    break if (sentence.length + word.length + 1) > 14 # +1 for the space
+
+    sentence += " " unless sentence.empty?
+    sentence += word
+  end
+
   gossip = Gossip.create!(
-    title: Faker::Lorem.sentence(word_count: 3),
+    title: sentence,
     content: Faker::Lorem.sentence(word_count: 20),
     user: User.all.sample
   )
