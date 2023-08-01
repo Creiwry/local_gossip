@@ -1,13 +1,15 @@
-<div style="height: 100vh;" class="d-flex flex-column justify-content-center align-items-center">
-  <div class="p-5 card w-50" style="width: 18rem;">
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <div class="p-2 card w-50" style="width: 18rem;">
     <div class="card-body">
       <div class="d-flex justify-content-center">
         <div>
-          <h3 class="card-title"> <%= @gossip.title %></h3>
+          <h3 class="card-title text-center"> <%= @gossip.title %></h3>
           <h5 class="card-title">By: <%= link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}" , user_path(id: @gossip.user.id)%></h5>
           <p class="card-text"><%= @gossip.content %></p>
-          <%= button_to 'Edit', edit_gossip_path(@gossip.id), method: :get, class:'btn btn-warning' %>
-          <%= button_to 'Delete', gossip_path(@gossip.id), method: :delete, class:'btn btn-danger' %>
+          <div class="container d-flex flex-row justify-content-center">
+            <%= button_to 'Edit', edit_gossip_path(@gossip.id), method: :get, class:'btn btn-warning' %>
+            <%= button_to 'Delete', gossip_path(@gossip.id), method: :delete, class:'btn btn-danger' %>
+          </div>
           <a class="site-link" href="<%= root_path %>">Back to index</a>
         </div>
       </div>

@@ -1,16 +1,17 @@
-
-<nav class="navbar navbar-expand-lg ">
-  <div class="container-fluid d-flex">
-    <div class="navbar-nav mb-2 mb-lg-0">
-      <a class="navbar-brand" href="<%= root_path %>">The Gossip Project</a>
-    </div>
-    <div class="navbar-nav w-50 flex-row me-auto mb-2 mb-lg-0">
-      <div class="nav-item mx-2">
-        <%= link_to 'Contacts', contacts_path, class:'nav-link' %>
+<header>
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid d-flex">
+      <div class="navbar-nav mb-2 mb-lg-0">
+        <a class="navbar-brand" href="<%= root_path %>">The Gossip Project</a>
       </div>
-      <div class="nav-item mx-2">
-        <%= link_to 'Team', team_path, class:'nav-link' %>
+      <div class="navbar-nav w-50 flex-row me-auto mb-2 mb-lg-0">
+        <div class="nav-item mx-2">
+          <%= link_to 'Contacts', contacts_path, class:'nav-link' %>
+        </div>
+        <div class="nav-item mx-2">
+          <%= link_to 'Team', team_path, class:'nav-link' %>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>

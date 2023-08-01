@@ -1,0 +1,14 @@
+<div class="container">
+  
+  <% flash.each do |name, type| %>
+    <% puts "name:  #{name}, type:  #{type}" %>
+    <% if name == "notice" %>
+      <%= content_tag :div, type, :class => "alert alert-success", :role => "notice" %>
+    <% elsif name == "alert" || name == "error" %>
+      <%= content_tag :div, type, :class => "alert alert-danger", :role => "alert" %>
+    <% else %>
+      <%= content_tag :div, type, :class => "alert alert-warning", :role => "warning" %>
+    <% end %>
+  <% end %>
+  
+</div>

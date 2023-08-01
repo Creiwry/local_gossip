@@ -1,9 +1,13 @@
 <div class="container">
   <%= form_tag url_for(action: 'update'), method: :patch do %>
-    <%= text_field_tag 'gossip[title]', @gossip.title %>
-    <%= text_area_tag 'gossip[content]', @gossip.content %>
-    <%= submit_tag  "Update post"%>
-
+    <%= label_tag :title, "Gossip Title", class: "form-label" %>
+    <%= text_field_tag 'gossip[title]', @gossip.title, class: "form-control" %>
+    <%= label_tag :content, "Gossip Content", class: "form-label mt-2" %>
+    <%= text_area_tag 'gossip[content]', @gossip.content, class: "form-control" %>
+    <%= submit_tag  "Update post", class: "btn btn-primary mt-2" %>
   <% end %>
   
 </div>
+
+
+
