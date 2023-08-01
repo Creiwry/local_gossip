@@ -35,9 +35,9 @@ end
   )
 end
 
-10.times do
-  Tag.create!(title: Faker::Lorem.word)
-end
+# 10.times do
+#   Tag.create!(title: Faker::Lorem.word)
+# end
 
 20.times do
   gossip = Gossip.create!(
@@ -49,45 +49,45 @@ end
   gossip.tags = Tag.all.sample(rand(1..3))
 end
 
-20.times do
-  Comment.create!(
-    content: Faker::Lorem.sentence(word_count: 10),
-    commentable: Gossip.all.sample,
-    user: User.all.sample
-  )
-end
+# 20.times do
+#   Comment.create!(
+#     content: Faker::Lorem.sentence(word_count: 10),
+#     commentable: Gossip.all.sample,
+#     user: User.all.sample
+#   )
+# end
 
-20.times do
-  Comment.create!(
-    content: Faker::Lorem.sentence(word_count: 10),
-    commentable: Comment.all.sample,
-    user: User.all.sample
-  )
-end
+# 20.times do
+#   Comment.create!(
+#     content: Faker::Lorem.sentence(word_count: 10),
+#     commentable: Comment.all.sample,
+#     user: User.all.sample
+#   )
+# end
 
-20.times do
-  likeable = [Gossip, Comment].sample.all.sample
+# 20.times do
+#   likeable = [Gossip, Comment].sample.all.sample
 
-  Like.create!(
-    likeable: likeable,
-    user: User.all.sample
-  )
-end
+#   Like.create!(
+#     likeable: likeable,
+#     user: User.all.sample
+#   )
+# end
 
-30.times do
-  PrivateMessage.create!(
-    content: Faker::Lorem.sentence(word_count: 15),
-    sender: User.all.sample
-  )
-end
+# 30.times do
+#   PrivateMessage.create!(
+#     content: Faker::Lorem.sentence(word_count: 15),
+#     sender: User.all.sample
+#   )
+# end
 
-PrivateMessage.all.each do |message|
-  recipients = User.all.sample(rand(1..5))
+# PrivateMessage.all.each do |message|
+#   recipients = User.all.sample(rand(1..5))
 
-  recipients.each do |recipient|
-    MessageRecipient.create!(
-      private_message: message,
-      recipient: recipient
-    )
-  end
-end
+#   recipients.each do |recipient|
+#     MessageRecipient.create!(
+#       private_message: message,
+#       recipient: recipient
+#     )
+#   end
+# end
