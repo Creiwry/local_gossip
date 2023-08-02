@@ -20,49 +20,7 @@
     </div>
   </div>
   <div class="container m-5">
-    
-    <div class="container m-2">
-      <div class="">
-        <h3>Comments:</h3>
-        <div class="d-flex flex-column">
-          
-          <%= form_with(model: @comment, url: gossip_comments_path(@gossip), local: true) do |form| %>
-            <%= form.hidden_field :gossip_id, value: @gossip.id %>
-            <%= form.label "Write your comment:", class: "form-label" %>
-            <br>
-            <%= form.text_area :content, class: "form-control" %>
-            <br>
-            <%= form.submit "Post", class:"btn btn-primary" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="container m-2">
-        <div class="p-2 card d-flex flex-wrap m-1">
-          <div class="card-body w-30">
-            <div class="d-flex flex-column">
-              <h5>This gossip has <%= @gossip.comments.count %> comments.</h5>
-            </div>
-          </div>
-        </div>
-      <% @gossip.comments.each do |comment| %>
-        <div class="p-2 card d-flex flex-wrap m-1">
-          <div class="card-body w-30">
-            <div class="d-flex flex-column">
-              <h5 class="card-title">By: <%= comment.user.first_name %></h5>
-              <p class="card-text"><%= comment.content %></p>
-              <%= button_to "Edit comment",
-                edit_gossip_comment_path(
-                  gossip_id: @gossip.id,
-                  id: comment.id
-                ),
-                method: :get,
-                class: "btn btn-warning"
-              %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
+    <%= render partial: "gossip/comments_new", locals: { comment: @comment, gossip: @gossip } %>
+    <%= render partial: "gossip/comments_index", locals: { gossip: @gossip } %>
   </div>
 </div>
