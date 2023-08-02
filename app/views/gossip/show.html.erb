@@ -5,16 +5,13 @@
         <div>
           <h3 class="card-title text-center"> <%= @gossip.title %></h3>
           <h5 class="card-title">By: <%= link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}" , user_path(id: @gossip.user.id)%></h5>
+          <h5 class="card-title">City: <%= link_to @gossip.user.city.name, city_path(@gossip.user.city_id) %></h5>
+
           <p class="card-text"><%= @gossip.content %></p>
           <%= render partial: "gossip/tags_index", locals: { gossip: @gossip } %>
           <div class="container d-flex flex-row m-2 justify-content-center">
             <%= button_to 'Edit', edit_gossip_path(@gossip.id), method: :get, class:'btn btn-warning' %>
             <%= button_to 'Delete', gossip_path(@gossip.id), method: :delete, class:'btn btn-danger' %>
-          </div>
-          <div class="container d-flex flex-column align-items-center">
-            
-            <%= link_to @gossip.user.city.name, city_path(@gossip.user.city_id) %>
-            <a class="site-link" href="<%= root_path %>">Back to index</a>
           </div>
         </div>
       </div>
