@@ -7,6 +7,7 @@
           <h5 class="card-title">Age: <%= @user.age %></h5>
           <h5 class="card-title">Email: <%= @user.email %></h5>
           <h5 class="card-title">City: <%= @user.city.name %></h5>
+          <%= link_to 'Go To City', city_path(@user.city_id) %>
           <p class="card-text"><%= @user.description %></p>
           <%= button_to "Delete user", user_path(@user.id), method: :delete %>
 

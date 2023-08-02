@@ -9,6 +9,7 @@
           <div class="container d-flex flex-row justify-content-center">
             <%= button_to 'Edit', edit_gossip_path(@gossip.id), method: :get, class:'btn btn-warning' %>
             <%= button_to 'Delete', gossip_path(@gossip.id), method: :delete, class:'btn btn-danger' %>
+            <%= link_to 'City', city_path(@gossip.user.city_id) %>
           </div>
           <a class="site-link" href="<%= root_path %>">Back to index</a>
         </div>
