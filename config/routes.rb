@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   root 'gossip#index'
 
   resources :gossip do
-    resources :comments
+    resources :comments do
+      resources :comments
+    end
+    resources :tags
   end
 
   resources :users
