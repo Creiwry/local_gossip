@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = 'Registration successful'
+      login_user(@user)
       redirect_to gossips_path
     else
       flash[:alert] = 'Registration unsuccessful'

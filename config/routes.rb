@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       resources :comments
     end
   end
+
+  resources :sessions, only: [:new, :create, :destroy]
   resources :tags
 
   resources :users
