@@ -9,34 +9,52 @@
           <div class="container d-flex flex-row justify-content-center">
             <%= button_to 'Edit', edit_gossip_path(@gossip.id), method: :get, class:'btn btn-warning' %>
             <%= button_to 'Delete', gossip_path(@gossip.id), method: :delete, class:'btn btn-danger' %>
-            <%= link_to 'City', city_path(@gossip.user.city_id) %>
           </div>
-          <a class="site-link" href="<%= root_path %>">Back to index</a>
+          <div class="container d-flex flex-column align-items-center">
+            
+            <%= link_to @gossip.user.city.name, city_path(@gossip.user.city_id) %>
+            <a class="site-link" href="<%= root_path %>">Back to index</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <h3>Comments:</h3>
-  <div class="container">
-    <%= form_with(model: @comment, url: gossip_comments_path(@gossip), local: true) do |form| %>
-      <%= form.hidden_field :gossip_id, value: @gossip.id %>
-      <%= form.label "Write your comment:", class: "form-label" %>
-      <br>
-      <%= form.text_area :content, class: "form-control w-50" %>
-      <br>
-      <%= form.submit "Post", class:"btn btn-primary" %>
-    <% end %>
-  </div>
-  <% @gossip.comments.each do |comment| %>
-    <div class="p-2 card d-flex flex-wrap">
-      <div class="card-body w-30">
-        <div class="d-flex justify-content-center">
-          <div>
+  <div class="container m-5">
+    
+    <div class="container m-2">
+      <div class="">
+        <h3>Comments:</h3>
+        <div class="d-flex flex-column">
+          
+          <%= form_with(model: @comment, url: gossip_comments_path(@gossip), local: true) do |form| %>
+            <%= form.hidden_field :gossip_id, value: @gossip.id %>
+            <%= form.label "Write your comment:", class: "form-label" %>
+            <br>
+            <%= form.text_area :content, class: "form-control" %>
+            <br>
+            <%= form.submit "Post", class:"btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="container m-2">
+        <div class="p-2 card d-flex flex-wrap m-1">
+          <div class="card-body w-30">
+            <div class="d-flex flex-column">
+              <h5>This gossip has <%= @gossip.comments.count %> comments.</h5>
+            </div>
+          </div>
+        </div>
+      <% @gossip.comments.each do |comment| %>
+        <div class="p-2 card d-flex flex-wrap m-1">
+          <div class="card-body w-30">
+            <div class="d-flex flex-column">
               <h5 class="card-title">By: <%= comment.user.first_name %></h5>
               <p class="card-text"><%= comment.content %></p>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>

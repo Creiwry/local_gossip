@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   resources :gossip do
     resources :comments
   end
+
   resources :users
   resources :cities, only: :show
-  # get '/gossip/:id', to: 'gossip#show', as: 'gossip'
-  # get '/users/:id', to: 'users#show', as: 'user'
+
   get '/contacts', to: 'static#contacts'
   get '/team', to: 'static#team'
   get '/welcome/:name', to: 'static#welcome'
