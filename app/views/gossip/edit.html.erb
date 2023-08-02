@@ -4,6 +4,13 @@
     <%= text_field_tag 'gossip[title]', @gossip.title, class: "form-control" %>
     <%= label_tag :content, "Gossip Content", class: "form-label mt-2" %>
     <%= text_area_tag 'gossip[content]', @gossip.content, class: "form-control" %>
+    <%= label_tag :tags, "Tags", class:"form-label" %>
+    <%= collection_check_boxes(:gossip, :tag_ids, @tags, :id, :title) do |box| %>
+      <div class="form-check">
+        <%=  box.check_box(class: "form-check-input", checked: @gossip.tags.include?(box.object))  %>
+        <%= box.label(class: "form-check-label") %>
+      </div>
+    <% end %>
     <%= submit_tag  "Update post", class: "btn btn-primary mt-2" %>
   <% end %>
   

@@ -18,9 +18,7 @@ class GossipController < ApplicationController
     @tags = Tag.all
     @gossip = Gossip.new(title: params[:title], content: params[:content], user: User.first)
     if @gossip.save
-      params[:gossip][:tag_ids].each do |tag_id|
-        GossipTag.create(gossip: @gossip, tag_id: tag_id)
-      end
+      create_tags(@gossip, params[:gossip][:tag_ids])
 
       flash[:notice] = 'Gossip creation successful'
       redirect_to gossip_path(@gossip.id)
@@ -31,12 +29,15 @@ class GossipController < ApplicationController
   end
 
   def edit
+    @tags = Tag.all
     @gossip = Gossip.find(params[:id])
   end
 
   def update
+    @tags = Tag.all
     @gossip = Gossip.find(params[:id])
     if @gossip.update(gossip_params)
+      create_tags(@gossip, params[:gossip][:tag_ids])
       flash[:notice] = 'Gossip updated successful'
       redirect_to gossip_path(@gossip.id)
     else
@@ -65,5 +66,12 @@ class GossipController < ApplicationController
 
   def gossip_params
     params.require(:gossip).permit(:title, :content, :user_id)
+  end
+
+  def create_tags(gossip, tag_ids)
+    @gossip.tags.clear
+    params[:gossip][:tag_ids].each do |tag_id|
+      GossipTag.create(gossip: @gossip, tag_id: tag_id)
+    end
   end
 end
