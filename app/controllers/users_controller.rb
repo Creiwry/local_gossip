@@ -4,6 +4,17 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+  
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:notice] = 'User deleted successfully'
+      redirect_to gossip_index_path
+    else
+      flash[:alert] = 'Failed to delete user'
+      render :show
+    end
+  end
 
   private
 
