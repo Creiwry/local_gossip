@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_07_27_171310) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.string "zip_code"
@@ -22,9 +25,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_171310) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "commentable_type", null: false
-    t.integer "commentable_id", null: false
+    t.bigint "commentable_id", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -32,8 +35,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_171310) do
   create_table "gossip_tags", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "gossip_id", null: false
-    t.integer "tag_id", null: false
+    t.bigint "gossip_id", null: false
+    t.bigint "tag_id", null: false
     t.index ["gossip_id"], name: "index_gossip_tags_on_gossip_id"
     t.index ["tag_id"], name: "index_gossip_tags_on_tag_id"
   end
@@ -43,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_171310) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_gossips_on_user_id"
   end
 
@@ -51,15 +54,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_171310) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "likeable_type", null: false
-    t.integer "likeable_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "likeable_id", null: false
+    t.bigint "user_id", null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "message_recipients", force: :cascade do |t|
-    t.integer "private_message_id"
-    t.integer "recipient_id"
+    t.bigint "private_message_id"
+    t.bigint "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["private_message_id"], name: "index_message_recipients_on_private_message_id"
@@ -70,7 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_171310) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "sender_id", null: false
+    t.bigint "sender_id", null: false
     t.index ["sender_id"], name: "index_private_messages_on_sender_id"
   end
 
@@ -88,17 +91,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_171310) do
     t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "city_id", null: false
+    t.bigint "city_id", null: false
     t.index ["city_id"], name: "index_users_on_city_id"
   end
 
-  add_foreign_key "comments", "users"
-  add_foreign_key "gossip_tags", "gossips"
-  add_foreign_key "gossip_tags", "tags"
-  add_foreign_key "gossips", "users"
-  add_foreign_key "likes", "users"
-  add_foreign_key "message_recipients", "private_messages"
-  add_foreign_key "message_recipients", "users", column: "recipient_id"
-  add_foreign_key "private_messages", "users", column: "sender_id"
-  add_foreign_key "users", "cities"
+  add_foreign_key "comments", "users", on_delete: :cascade
+  add_foreign_key "gossip_tags", "gossips", on_delete: :cascade
+  add_foreign_key "gossip_tags", "tags", on_delete: :cascade
+  add_foreign_key "gossips", "users", on_delete: :cascade
+  add_foreign_key "likes", "users", on_delete: :cascade
+  add_foreign_key "message_recipients", "private_messages", on_delete: :cascade
+  add_foreign_key "message_recipients", "users", column: "recipient_id", on_delete: :cascade
+  add_foreign_key "private_messages", "users", column: "sender_id", on_delete: :cascade
+  add_foreign_key "users", "cities", on_delete: :cascade
 end
