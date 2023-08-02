@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'gossip#index'
 
-  resources :gossip
+  resources :gossip do
+    resources :comments
+  end
   resources :users
   resources :cities, only: :show
   # get '/gossip/:id', to: 'gossip#show', as: 'gossip'

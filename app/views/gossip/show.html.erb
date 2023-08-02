@@ -16,17 +16,27 @@
       </div>
     </div>
   </div>
-  <div class="p-2 card d-flex flex-wrap">
-    <div class="card-body w-30">
-      <div class="d-flex justify-content-center">
-        <div>
-          <h3>Comments:</h3>
-          <% @gossip.comments.each do |comment| %>
-            <h5 class="card-title">By: <%= comment.user.first_name %></h5>
-            <p class="card-text"><%= comment.content %></p>
-          <% end %>
+  <h3>Comments:</h3>
+  <div class="container">
+    <%= form_with(model: @comment, url: gossip_comments_path(@gossip), local: true) do |form| %>
+      <%= form.hidden_field :gossip_id, value: @gossip.id %>
+      <%= form.label "Write your comment:", class: "form-label" %>
+      <br>
+      <%= form.text_area :content, class: "form-control w-50" %>
+      <br>
+      <%= form.submit "Post", class:"btn btn-primary" %>
+    <% end %>
+  </div>
+  <% @gossip.comments.each do |comment| %>
+    <div class="p-2 card d-flex flex-wrap">
+      <div class="card-body w-30">
+        <div class="d-flex justify-content-center">
+          <div>
+              <h5 class="card-title">By: <%= comment.user.first_name %></h5>
+              <p class="card-text"><%= comment.content %></p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
