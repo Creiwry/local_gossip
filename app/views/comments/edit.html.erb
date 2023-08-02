@@ -1,0 +1,11 @@
+<div class="d-flex flex-column">
+  <%= form_with( model: @comment, url: gossip_comment_path(@gossip, @comment), local: true) do |form| %>
+    <%= form.hidden_field :gossip_id, value: @gossip.id %>
+    <%= form.hidden_field :user_id, value: @comment.user.id %>
+    <%= form.label "Write your comment:", class: "form-label" %>
+    <br>
+    <%= form.text_area :content, class: "form-control" %>
+    <br>
+    <%= form.submit "Post", class:"btn btn-primary" %>
+  <% end %>
+</div>

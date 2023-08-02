@@ -51,6 +51,14 @@
             <div class="d-flex flex-column">
               <h5 class="card-title">By: <%= comment.user.first_name %></h5>
               <p class="card-text"><%= comment.content %></p>
+              <%= button_to "Edit comment",
+                edit_gossip_comment_path(
+                  gossip_id: @gossip.id,
+                  id: comment.id
+                ),
+                method: :get,
+                class: "btn btn-warning"
+              %>
             </div>
           </div>
         </div>
