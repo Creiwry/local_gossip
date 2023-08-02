@@ -11,11 +11,17 @@ class GossipController < ApplicationController
   end
 
   def new
+    @tags = Tag.all
   end
 
   def create
+    @tags = Tag.all
     @gossip = Gossip.new(title: params[:title], content: params[:content], user: User.first)
     if @gossip.save
+      params[:gossip][:tag_ids].each do |tag_id|
+        GossipTag.create(gossip: @gossip, tag_id: tag_id)
+      end
+
       flash[:notice] = 'Gossip creation successful'
       redirect_to gossip_path(@gossip.id)
     else

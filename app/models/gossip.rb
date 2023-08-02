@@ -1,4 +1,6 @@
 class Gossip < ApplicationRecord
+  attr_accessor :tag_ids
+
   validates :title, presence: true, length: { in: 2..14 }
   validates :content, presence: true
 

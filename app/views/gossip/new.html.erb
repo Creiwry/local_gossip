@@ -4,6 +4,14 @@
     <%= text_field_tag :title, nil, class: "form-control" %>
     <%= label_tag :content, "Gossip Content", class: "form-label mt-2" %>
     <%= text_area_tag :content, nil, class: "form-control" %>
+    <%= label_tag :tags, "Tags", class:"form-label" %>
+    <%= collection_check_boxes(:gossip, :tag_ids, @tags, :id, :title) do |box| %>
+      <div class="form-check">
+        <%=  box.check_box(class: "form-check-input")  %>
+        <%= box.label(class: "form-check-label") %>
+      </div>
+    <% end %>
+    <%#= select_tag "tag_ids[]", options_from_collection_for_select(@tags, "id", "title"), multiple: true, class: "form-control" %>
     <%= submit_tag  "Create post", class: "btn btn-primary mt-2" %>
   <% end %>
   
