@@ -1,0 +1,18 @@
+<div class="container d-flex flex-row m-2 justify-content-center">
+  <% if gossip.likes.map(&:user).include?(current_user) %>
+    <% like = gossip.likes.find_by(user: current_user) %>
+    <%= form_with(model: like, url: gossip_like_path(gossip, like), method: :delete, local: true) do |form| %>
+      <button name="commit" type="submit" class="btn btn-success">
+        Remove Like <span class="badge text-bg-secondary"><%= gossip.likes.count %></span>
+      </button>
+    <% end %>
+
+  <% else %>
+    <%= form_with(model: Like.new , url: gossip_likes_path(gossip), local: true) do |form| %>
+      <%= form.hidden_field :likeable_id, value: gossip.id %>
+      <button name="commit" type="submit" class="btn btn-success">
+        Like <span class="badge text-bg-secondary"><%= gossip.likes.count %></span>
+      </button>
+    <% end %>
+  <% end %>
+</div>

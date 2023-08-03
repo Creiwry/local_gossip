@@ -9,10 +9,13 @@
 
           <p class="card-text"><%= @gossip.content %></p>
           <%= render partial: "gossip/tags_index", locals: { gossip: @gossip } %>
-          <div class="container d-flex flex-row m-2 justify-content-center">
-            <%= button_to 'Edit', edit_gossip_path(@gossip.id), method: :get, class:'btn btn-warning' %>
-            <%= button_to 'Delete', gossip_path(@gossip.id), method: :delete, class:'btn btn-danger' %>
-          </div>
+          <% if check_if_current_user(@gossip.user) %>
+            <div class="container d-flex flex-row m-2 justify-content-center">
+              <%= button_to 'Edit', edit_gossip_path(@gossip.id), method: :get, class:'btn btn-warning' %>
+              <%= button_to 'Delete', gossip_path(@gossip.id), method: :delete, class:'btn btn-danger' %>
+            </div>
+          <% end %>
+          <%= render partial: "gossip/likes", locals: { gossip: @gossip } %>
         </div>
       </div>
     </div>

@@ -1,0 +1,18 @@
+<div class="container d-flex flex-row m-2 justify-content-end">
+  <% if comment.likes.map(&:user).include?(current_user) %>
+    <% like = comment.likes.find_by(user: current_user) %>
+    <%= form_with(model: like, url: like_path(like), method: :delete, local: true) do |form| %>
+      <button name="commit" type="submit" class="btn btn-success">
+        Remove Like <span class="badge text-bg-secondary"><%= comment.likes.count %></span>
+      </button>
+    <% end %>
+
+  <% else %>
+    <%= form_with(model: Like.new , url: comment_likes_path(comment), local: true) do |form| %>
+      <%= form.hidden_field :likeable_id, value: comment.id %>
+      <button name="commit" type="submit" class="btn btn-success">
+        Like <span class="badge text-bg-secondary"><%= comment.likes.count %></span>
+      </button>
+    <% end %>
+  <% end %>
+</div>

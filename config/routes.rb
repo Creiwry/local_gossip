@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'gossip#index'
 
   resources :gossip do
-    resources :comments do
-      resources :comments
+    resources :comments, shallow: true do
+      resources :comments, defaults: { commentable: 'comment' }
+      resources :likes, only: [:create, :destroy], defaults: { likeable: 'comment' }
     end
+    resources :likes, only: [:create, :destroy], defaults: { likeable: 'gossip' }
   end
 
   resources :sessions, only: [:new, :create, :destroy]
