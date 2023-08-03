@@ -1,0 +1,36 @@
+<div id="comments-index">
+  
+  <% gossip.comments.each do |comment| %>
+    <div class="p-2 card d-flex flex-wrap m-1">
+      <div class="card-body w-30">
+        <div class="d-flex flex-column">
+          <h5 class="card-title">By: <%= comment.user.first_name %></h5>
+          <p class="card-text"><%= comment.content %></p>
+          <% if check_if_current_user(comment.user) %>
+
+            <div class="d-flex justify-content-center">
+              <%= button_to "Edit comment",
+                edit_comment_path(
+                  id: comment.id
+                ),
+                method: :get,
+                class: "btn btn-warning mx-2"
+              %>
+
+            <%= button_to "Delete comment",
+              comment_path(
+                id: comment.id
+              ),
+              method: :delete,
+              class: "btn btn-danger mx-2"
+            %>
+          </div>
+        <% end %>
+        <%= render partial: "comments/comment_likes", locals: { comment: comment } %>
+        <%= render partial: "comments/comment_on_comments_index", locals: {comment: comment } %>
+        <%= render partial: "comments/comment_on_comments_new", locals: { comment: comment } %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

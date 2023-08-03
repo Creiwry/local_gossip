@@ -1,11 +1,9 @@
-
-<div class="container">
-  
+<div id="comment-on-comments-index" class="container">
   <% comment.comments.each do |comment| %>
     <h5>By: <%= comment.user.first_name %></h5>
     <p><%= comment.content %></p>
     <% if check_if_current_user(comment.user) %>
-      
+
       <div class="d-flex justify-content-center">
         <%= button_to "Edit comment",
           edit_comment_path(

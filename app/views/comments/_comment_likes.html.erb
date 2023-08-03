@@ -1,4 +1,4 @@
-<div class="container d-flex flex-row m-2 justify-content-end">
+<div id="comment-likes" class="container d-flex flex-row m-2 justify-content-end">
   <% if comment.likes.map(&:user).include?(current_user) %>
     <% like = comment.likes.find_by(user: current_user) %>
     <%= form_with(model: like, url: like_path(like), method: :delete, local: true) do |form| %>
