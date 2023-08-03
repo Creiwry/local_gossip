@@ -37,7 +37,7 @@ class GossipController < ApplicationController
     @tags = Tag.all
     @gossip = Gossip.find(params[:id])
 
-    if @gossip.user == current_user && @gossip.update(gossip_params)
+    if chack_if_current_user(@gossip.user) && @gossip.update(gossip_params)
       create_tags(@gossip, params[:gossip][:tag_ids])
       flash[:notice] = 'Gossip updated successful'
       redirect_to gossip_path(@gossip.id)
@@ -49,7 +49,7 @@ class GossipController < ApplicationController
 
   def destroy
     @gossip = Gossip.find(params[:id])
-    if @gossip.destroy
+    if check_if_current_user(@gossip.user) && @gossip.destroy
       flash[:notice] = 'Gossip deleted successfully'
       redirect_to gossip_index_path
     else

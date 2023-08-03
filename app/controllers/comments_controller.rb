@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     @gossip = Gossip.find(params[:gossip_id])
-    if @comment.update(content: params[:comment][:content])
+    if check_if_current_user(@comment.user) && @comment.update(content: params[:comment][:content])
       flash[:notice] = 'Comment update successful'
       redirect_to gossip_path(@gossip.id)
     else
@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    if @comment.destroy
+    if check_if_current_user(@comment.user) && @comment.destroy
       flash[:notice] = 'Comment deleted successfully'
     else
       flash[:alert] = 'Failed to delete comment'
