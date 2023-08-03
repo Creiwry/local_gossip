@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       log_in(@user)
       redirect_to root_path
     else
-      flash[:alert] = 'Registration unsuccessful'
+      flash.now[:alert] = error_string(@user)
       render :new
     end
   end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'User deleted successfully'
       redirect_to gossip_index_path
     else
-      flash[:alert] = 'Failed to delete user'
+      flash.now[:alert] = error_string(@user)
       render :show
     end
   end

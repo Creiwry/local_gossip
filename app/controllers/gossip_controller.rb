@@ -23,7 +23,8 @@ class GossipController < ApplicationController
       flash[:notice] = 'Gossip creation successful'
       redirect_to gossip_path(@gossip.id)
     else
-      flash[:alert] = 'Failed to create gossip'
+
+      flash.now[:alert] = error_string(@gossip)
       render :new
     end
   end
@@ -37,12 +38,12 @@ class GossipController < ApplicationController
     @tags = Tag.all
     @gossip = Gossip.find(params[:id])
 
-    if chack_if_current_user(@gossip.user) && @gossip.update(gossip_params)
+    if check_if_current_user(@gossip.user) && @gossip.update(gossip_params)
       create_tags(@gossip, params[:gossip][:tag_ids])
       flash[:notice] = 'Gossip updated successful'
       redirect_to gossip_path(@gossip.id)
     else
-      flash[:alert] = 'Failed to update gossip'
+      flash.now[:alert] = 'Failed to update gossip'
       render :edit
     end
   end
@@ -53,7 +54,7 @@ class GossipController < ApplicationController
       flash[:notice] = 'Gossip deleted successfully'
       redirect_to gossip_index_path
     else
-      flash[:alert] = 'Failed to delete gossip'
+      flash.now[:alert] = 'Failed to delete gossip'
       render :show
     end
   end

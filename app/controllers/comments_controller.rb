@@ -1,49 +1,60 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user
+  before_action :set_commentable, only: [:create]
 
   def create
-    gossip = Gossip.find(params[:comment][:gossip_id])
     @comment = Comment.new(
-      commentable: gossip,
+      commentable: @commentable,
       user: current_user,
       content: params[:comment][:content]
     )
     if @comment.save
       flash[:notice] = 'Comment creation successful'
     else
-      flash[:alert] = 'Failed to create comment'
+      flash.now[:alert] = error_string(@comment)
     end
-    redirect_to gossip_path(gossip.id)
+    redirect_to gossip_path(root_gossip_id(@comment))
   end
 
   def edit
     @comment = Comment.find(params[:id])
-    @gossip = Gossip.find(params[:gossip_id])
   end
 
   def update
     @comment = Comment.find(params[:id])
-    @gossip = Gossip.find(params[:gossip_id])
     if check_if_current_user(@comment.user) && @comment.update(content: params[:comment][:content])
       flash[:notice] = 'Comment update successful'
-      redirect_to gossip_path(@gossip.id)
+      redirect_to gossip_path(root_gossip_id(@comment))
     else
-      flash[:alert] = 'Comment update failed'
+      flash.now[:alert] = error_string(@comment)
       render :edit
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
+    root_gossip_id = root_gossip_id(@comment)
     if check_if_current_user(@comment.user) && @comment.destroy
       flash[:notice] = 'Comment deleted successfully'
     else
-      flash[:alert] = 'Failed to delete comment'
+      flash.now[:alert] = error_string(@comment)
     end
-    redirect_to gossip_path(params[:gossip_id])
+    redirect_to gossip_path(root_gossip_id)
   end
 
   private
+
+  def set_commentable
+    if params.key?(:gossip_id)
+      @commentable = Gossip.find(params[:gossip_id])
+    else
+      @commentable = Comment.find(params[:comment_id])
+    end
+  end
+
+  def root_gossip_id(comment)
+    comment.commentable.instance_of?(Gossip) ? comment.commentable.id : comment.commentable.commentable.id
+  end
 
   def comment_params
     params.require(:comment).permit(:content)

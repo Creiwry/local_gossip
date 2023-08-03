@@ -15,4 +15,12 @@ class ApplicationController < ActionController::Base
     flash[:alert] = '404 not found'
     redirect_to :back
   end
+
+  def error_string(object_of_error)
+    message_array = []
+    object_of_error.errors.full_messages.each do |msg|
+      message_array << msg
+    end
+    message_array.join('; ')
+  end
 end
