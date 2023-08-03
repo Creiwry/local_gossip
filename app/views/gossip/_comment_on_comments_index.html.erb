@@ -1,0 +1,29 @@
+
+<div class="container">
+  
+  <% comment.comments.each do |comment| %>
+    <h5>By: <%= comment.user.first_name %></h5>
+    <p><%= comment.content %></p>
+    <% if check_if_current_user(comment.user) %>
+      
+      <div class="d-flex justify-content-center">
+        <%= button_to "Edit comment",
+          edit_comment_path(
+            id: comment.id
+          ),
+          method: :get,
+          class: "btn btn-warning mx-2"
+        %>
+
+        <%= button_to "Delete comment",
+          comment_path(
+            id: comment.id
+          ),
+          method: :delete,
+          class: "btn btn-danger mx-2"
+        %>
+      </div>
+    <% end %>
+    <hr>
+  <% end %>
+</div>

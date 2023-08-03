@@ -22,6 +22,15 @@
   </div>
   <div class="container m-5">
     <%= render partial: "gossip/comments_new", locals: { comment: @comment, gossip: @gossip } %>
-    <%= render partial: "gossip/comments_index", locals: { gossip: @gossip } %>
+    <div class="container m-2">
+      <div class="p-2 card d-flex flex-wrap m-1">
+        <div class="card-body w-30">
+          <div class="d-flex flex-column">
+            <h5>This gossip has <%= @gossip.comments.count %> comments.</h5>
+          </div>
+        </div>
+      </div>
+      <%= render partial: "gossip/comments_index", locals: { gossip: @gossip } %>
+    </div
   </div>
 </div>
