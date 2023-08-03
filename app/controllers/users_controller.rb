@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def show
     @user = User.find(params[:id])
@@ -7,15 +6,17 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @cities = City.all
   end
 
   def create
+    @cities = City.all
     @user = User.new(users_params)
 
     if @user.save
       flash[:notice] = 'Registration successful'
-      login_user(@user)
-      redirect_to gossips_path
+      log_in(@user)
+      redirect_to root_path
     else
       flash[:alert] = 'Registration unsuccessful'
       render :new
@@ -46,9 +47,5 @@ class UsersController < ApplicationController
       :password_confirmation,
       :city_id
     )
-  end
-
-  def record_not_found
-    render plain: '404 Not Found', status: 404
   end
 end

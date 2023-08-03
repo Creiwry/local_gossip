@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user
+
   def create
     gossip = Gossip.find(params[:comment][:gossip_id])
     @comment = Comment.new(
       commentable: gossip,
-      user: User.all.sample,
+      user: current_user,
       content: params[:comment][:content]
     )
     if @comment.save

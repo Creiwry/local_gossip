@@ -1,6 +1,5 @@
 class GossipController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-
+  before_action :authenticate_user, except: [:index]
   def index
     @gossips = Gossip.all
   end
@@ -16,7 +15,8 @@ class GossipController < ApplicationController
 
   def create
     @tags = Tag.all
-    @gossip = Gossip.new(title: params[:title], content: params[:content], user: User.first)
+    @gossip = Gossip.new(title: params[:title], content: params[:content], user: current_user)
+
     if @gossip.save
       create_tags(@gossip, params[:gossip][:tag_ids])
 
@@ -36,7 +36,8 @@ class GossipController < ApplicationController
   def update
     @tags = Tag.all
     @gossip = Gossip.find(params[:id])
-    if @gossip.update(gossip_params)
+
+    if @gossip.user == current_user && @gossip.update(gossip_params)
       create_tags(@gossip, params[:gossip][:tag_ids])
       flash[:notice] = 'Gossip updated successful'
       redirect_to gossip_path(@gossip.id)

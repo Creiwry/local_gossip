@@ -1,0 +1,10 @@
+
+<div class="container">
+  <%= form_tag url_for(action: 'create'), method: :post do %>
+    <%= label_tag :email %>
+    <%= text_field_tag :email,nil, class: "form-control"  %>
+    <%= label_tag :password %>
+    <%= password_field_tag :password, nil, class: "form-control"  %>
+    <%= submit_tag "Log in" %>
+  <% end %>
+</div>

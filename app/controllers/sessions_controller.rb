@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       log_in(user)
       flash[:notice] = "Logged in"
-      redirect_to gossips_path
+      redirect_to user_path(user)
     else
       flash[:alert] = "Failed to log in"
       render :new
@@ -18,10 +18,10 @@ class SessionsController < ApplicationController
   def destroy
     if session.delete(:user_id)
       flash[:notice] = "Signed out"
-      redirect_to gossips_path
+      redirect_to root_path
     else
       flash[:alert] = "Failed to sign out"
-      render_back_or_to root_path
+      redirect_back_or_to root_path
     end
   end
 end

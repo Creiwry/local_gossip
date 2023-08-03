@@ -1,12 +1,21 @@
 <div class="container">
-  <%= form_with(model: @users, url: user_path, method: :post) do |form| %>
-    <%= form.text_field :first_name %>
-    <%= form.text_area :last_name %>
-    <%= form.text_field :last_name %>
-    <%= form.text_field :email %>
-    <%= form.text_field :age %>
+  <%= form_with(model: @user, url: users_path, method: :post) do |form| %>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "form-control" %>
+    <%= form.label :last_name %>
+    <%= form.text_area :last_name, class: "form-control"  %>
+    <%= form.label :age %>
+    <%= form.text_field :age, class: "form-control"  %>
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control"  %>
+    <%= form.select :city_id, @cities.collect {|u| [u.name, u.id]}, prompt: "Select your city", class: "form-select" %>
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "form-control"  %>
+    <%= form.label :password %>
+    <%= form.password_field :password, class: "form-control"  %>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, class: "form-control"  %>
     <%= form.submit %>
-
   <% end %>
   
 </div>
