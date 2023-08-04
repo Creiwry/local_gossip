@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Logged in"
       redirect_to user_path(user)
     else
-      flash.new[:alert] = "Failed to log in"
+      flash.now[:alert] = "Failed to log in"
       render :new
     end
   end

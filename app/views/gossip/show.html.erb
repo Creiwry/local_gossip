@@ -8,7 +8,7 @@
           <h5 class="card-title">City: <%= link_to @gossip.user.city.name, city_path(@gossip.user.city_id) %></h5>
 
           <p class="card-text"><%= @gossip.content %></p>
-          <%= render partial: "tags/tags_index", locals: { gossip: @gossip } %>
+          <%= render partial: "tags/tags_index", locals: { tags: @gossip.tags } %>
           <% if check_if_current_user(@gossip.user) %>
             <div class="container d-flex flex-row m-2 justify-content-center">
               <%= button_to 'Edit', edit_gossip_path(@gossip.id), method: :get, class:'btn btn-warning' %>

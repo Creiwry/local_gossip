@@ -1,9 +1,6 @@
 
 <div class="container d-flex flex-wrap">
+  <h1>All Tags</h1>
   
-  <% @tags.each do |tag| %>
-    <span class="d-inline-block rounded-pill px-2 py-1 text-bg-light">
-    <%= link_to tag.title, tag_path(tag.id)  %></span>
-     
-  <% end %>
+  <%= render partial: "tags/tags_index", locals: { tags: @tags } %>
 </div>

@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @my_gossip = @user.gossips
+    @liked_gossip = @user.likes.select { |like| like.likeable_type == 'Gossip' }.map(&:likeable)
   end
 
   def new
@@ -16,7 +18,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = 'Registration successful'
       log_in(@user)
-      redirect_to root_path
+      redirect_to users_path(@user)
     else
       flash.now[:alert] = error_string(@user)
       render :new

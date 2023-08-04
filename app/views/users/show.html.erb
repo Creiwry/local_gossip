@@ -3,11 +3,11 @@
     <div class="card-body">
       <div class="d-flex justify-content-center">
         <div>
-          <h3 class="card-title">Name: <%= @user.first_name %> <%= @user.last_name %></h3>
+          <h3 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h3>
           <h5 class="card-title">Age: <%= @user.age %></h5>
-          <h5 class="card-title">Email: <%= @user.email %></h5>
-          <h5 class="card-title">City: <%= @user.city.name %></h5>
-          <%= link_to 'Go To City', city_path(@user.city_id) %>
+          <h5 class="card-title">Email: <%#= @user.email %></h5>
+          <h5 class="card-title">City: <%= link_to @user.city.name , city_path(@user.city_id) %></h5>
+          
           <p class="card-text"><%= @user.description %></p>
           <% if check_if_current_user(@user.id) %>
             
@@ -17,5 +17,13 @@
         </div>
       </div>
     </div>
+  </div>
+  <div id="user-gossip-by-user" class="container">
+    <h1>My Gosip:</h1>
+    <%= render partial: "gossip/index", locals: { gossips: @my_gossip} %>
+  </div>
+  <div id="user-liked-gossip" class="container">
+    <h1>Liked Gosip:</h1>
+    <%= render partial: "gossip/index", locals: { gossips: @liked_gossip} %>
   </div>
 </div>

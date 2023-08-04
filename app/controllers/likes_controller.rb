@@ -5,7 +5,7 @@ class LikesController < ApplicationController
   def create
     @like = @likeable.likes.new(user: current_user)
     flash[:alert] = error_string(@like) unless @like.save
-    redirect_to gossip_path(root_gossip_id(@like))
+    redirect_back_or_to gossip_path(root_gossip_id(@like))
   end
 
   def destroy
@@ -13,7 +13,7 @@ class LikesController < ApplicationController
 
     flash[:alert] = error_string(@like) unless @like.destroy
 
-    redirect_to gossip_path(root_gossip_id(@like))
+    redirect_back_or_to gossip_path(root_gossip_id(@like))
   end
 
   private
