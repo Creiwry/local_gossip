@@ -1,18 +1,31 @@
-<div class="container">
+<div class="container card p-3 <%= ['card-bg-1', 'card-bg-2', 'card-bg-3', 'card-bg-4', 'card-bg-5'].sample %> text-dark">
+  <h1>What's the tea?</h1>
   <%= form_tag url_for(action: 'create'), method: :post do %>
-    <%= label_tag :title, "Gossip Title", class: "form-label" %>
-    <%= text_field_tag :title, nil, class: "form-control" %>
-    <%= label_tag :content, "Gossip Content", class: "form-label mt-2" %>
-    <%= text_area_tag :content, nil, class: "form-control" %>
-    <%= label_tag :tags, "Tags", class:"form-label" %>
-    <%= collection_check_boxes(:gossip, :tag_ids, @tags, :id, :title) do |box| %>
-      <div class="form-check">
-        <%=  box.check_box(class: "form-check-input")  %>
-        <%= box.label(class: "form-check-label") %>
+    <div class="mb-3">
+      
+      <%= label_tag :title, "Gossip Title", class: "form-label" %>
+      <%= text_field_tag :title, nil, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      
+      <%= label_tag :content, "Gossip Content", class: "form-label mt-2" %>
+      <%= text_area_tag :content, nil, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      
+      <%= label_tag :tags, "Tags", class:"form-label" %>
+      <div class="d-flex flex-wrap justify-content-evenly">
+        
+        <%= collection_check_boxes(:gossip, :tag_ids, @tags, :id, :title) do |box| %>
+          <div class="form-check m-2">
+            <%=  box.check_box(class: "form-check-input")  %>
+            <%= box.label(class: "form-check-label") %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
     <%#= select_tag "tag_ids[]", options_from_collection_for_select(@tags, "id", "title"), multiple: true, class: "form-control" %>
-    <%= submit_tag  "Create post", class: "btn btn-primary mt-2" %>
+    <%= submit_tag  "Create post", class: "btn btn-dark" %>
   <% end %>
   
 </div>

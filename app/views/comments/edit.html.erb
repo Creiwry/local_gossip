@@ -1,11 +1,11 @@
-<div class="d-flex flex-column">
-  <%= form_with( model: @comment, url: gossip_comment_path(@gossip, @comment), local: true) do |form| %>
-    <%= form.hidden_field :gossip_id, value: @gossip.id %>
+<div class="d-flex flex-column w-50 m-auto text-dark">
+  <h1>Edit your comment:</h1>
+  <%= form_with( model: @comment, url: comment_path(@comment), local: true) do |form| %>
     <%= form.hidden_field :user_id, value: @comment.user.id %>
     <%= form.label "Write your comment:", class: "form-label" %>
     <br>
     <%= form.text_area :content, class: "form-control" %>
     <br>
-    <%= form.submit "Post", class:"btn btn-primary" %>
+    <%= form.submit "Post", class:"btn btn-dark" %>
   <% end %>
 </div>

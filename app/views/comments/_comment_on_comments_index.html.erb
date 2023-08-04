@@ -1,4 +1,16 @@
-<div id="comment-on-comments-index" class="container">
+<% if comment.comments.count > 0 %>
+  
+  <button 
+    type="button" 
+    class="btn btn-dark m-1"
+    data-bs-toggle="collapse"
+    data-bs-target="#comment-on-comments-index"
+    aria-expanded="false"
+    aria-controls="comment-on-comments-index">
+    Show all <%= comment.comments.count %> comments
+    </button>
+<% end %>
+<div id="comment-on-comments-index" class="container mt-2 collapse">
   <% comment.comments.each do |comment| %>
     <h5>By: <%= comment.user.first_name %></h5>
     <p><%= comment.content %></p>

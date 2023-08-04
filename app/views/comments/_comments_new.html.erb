@@ -1,4 +1,13 @@
-<div id="new-comment" class="container m-2">
+<button 
+  type="button" 
+  class="btn btn-dark m-1"
+  data-bs-toggle="collapse"
+  data-bs-target="#new-comment"
+  aria-expanded="false"
+  aria-controls="new-comment">
+  Write a comment
+</button>
+<div id="new-comment" class="container card p-3 <%= ['card-bg-1', 'card-bg-2', 'card-bg-3', 'card-bg-4', 'card-bg-5'].sample %> text-dark collapse m-2">
   <h3>Comments:</h3>
   <div class="d-flex flex-column">
     <%= form_with(model: comment, url: gossip_comments_path(gossip), local: true) do |form| %>
@@ -7,7 +16,7 @@
       <br>
       <%= form.text_area :content, class: "form-control" %>
       <br>
-      <%= form.submit "Post", class:"btn btn-primary" %>
+      <%= form.submit "Post", class:"btn btn-dark" %>
     <% end %>
   </div>
 </div>

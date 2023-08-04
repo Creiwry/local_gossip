@@ -1,16 +1,26 @@
-<div class="d-flex flex-column justify-content-evenly">
-  <div class="d-flex justify-content-center">
-    <h1>All Gossip</h1>
-  </div>
-
-  <div class="container d-flex flex-row justify-content-center m-2">
+<div class="jumbotron jumbotron-fluid d-flex align-items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<%= asset_path('jumbotron-image.jpg') %>); background-size: cover; height: 40vh; background-position: 50% 50%; ">
+  <div class="container text-center">
     <% if current_user %>
-      <%= button_to 'Create Gossip', new_gossip_path, method: :get, class:'btn btn-primary' %>
+      <h1 class="display-4">Welcome To The Gossip Project, <%= current_user.first_name %></h1>
+    <% else %>
+      <h1 class="display-4">Welcome To The Gossip Project</h1>
+      
     <% end %>
   </div>
-  <div class="container d-flex flex-row justify-content-center m-2">
-    <%= button_to 'Find by tag', tags_path, method: :get, class:'btn btn-primary' %>
-  </div>
+</div>
 
-  <%= render partial: "gossip/index", locals: { gossips: @gossips } %>
+<div class="container">
+  
+  <div class="d-flex flex-column justify-content-evenly">
+
+    <div class="container d-flex flex-row justify-content-center m-2"> <% if current_user %>
+        <%= button_to 'Create Gossip', new_gossip_path, method: :get, class:'btn btn-dark' %>
+      <% end %>
+    </div>
+    <div class="container d-flex flex-row justify-content-center m-2">
+      <%= button_to 'Find by tag', tags_path, method: :get, class:'btn btn-dark' %>
+    </div>
+
+    <%= render partial: "gossip/index", locals: { gossips: @gossips } %>
+  </div>
 </div>

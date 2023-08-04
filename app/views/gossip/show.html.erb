@@ -1,34 +1,37 @@
-<div id= "show-gossip-outer" class="d-flex flex-column justify-content-center align-items-center">
-  <div class="p-2 card w-50" style="width: 18rem;">
-    <div class="card-body">
-      <div id="show-gossip-path" class="d-flex justify-content-center">
-        <div>
-          <h3 class="card-title text-center"> <%= @gossip.title %></h3>
-          <h5 class="card-title">By: <%= link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}" , user_path(id: @gossip.user.id)%></h5>
-          <h5 class="card-title">City: <%= link_to @gossip.user.city.name, city_path(@gossip.user.city_id) %></h5>
+<div class="container mt-3">
 
-          <p class="card-text"><%= @gossip.content %></p>
-          <%= render partial: "tags/tags_index", locals: { tags: @gossip.tags } %>
-          <% if check_if_current_user(@gossip.user) %>
-            <div class="container d-flex flex-row m-2 justify-content-center">
-              <%= button_to 'Edit', edit_gossip_path(@gossip.id), method: :get, class:'btn btn-warning' %>
-              <%= button_to 'Delete', gossip_path(@gossip.id), method: :delete, class:'btn btn-danger' %>
-            </div>
-          <% end %>
-          <%= render partial: "likes/likes", locals: { gossip: @gossip } %>
+  <div id= "show-gossip-outer" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="p-4 card <%= ['card-bg-1', 'card-bg-2', 'card-bg-3', 'card-bg-4', 'card-bg-5'].sample %> rounded-pill" >
+      <div class="card-body">
+        <div id="show-gossip-path" class="d-flex justify-content-center">
+          <div>
+            <h3 class="card-title text-center text-dark"> <%= @gossip.title %></h3>
+            <h5 class="card-title text-dark">By: <%= link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}" , user_path(id: @gossip.user.id), class: "link-dark" %></h5>
+            <h5 class="card-title text-dark">City: <%= link_to @gossip.user.city.name, city_path(@gossip.user.city_id), class: "link-dark" %></h5>
+
+            <p class="card-text text-dark"><%= @gossip.content %></p>
+            <%= render partial: "tags/tags_index", locals: { tags: @gossip.tags } %>
+            <% if check_if_current_user(@gossip.user) %>
+              <div class="container d-flex flex-row m-2 justify-content-center">
+                <%= button_to 'Edit', edit_gossip_path(@gossip.id), method: :get, class:'btn btn-warning me-1' %>
+                <%= button_to 'Delete', gossip_path(@gossip.id), method: :delete, class:'btn btn-danger ms-1' %>
+              </div>
+            <% end %>
+            <%= render partial: "likes/likes", locals: { gossip: @gossip } %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="comments-util" class="container m-5">
-    <%= render partial: "comments/comments_new", locals: { comment: @comment, gossip: @gossip } %>
-    <div id="comment-count" class="p-2 card d-flex flex-wrap m-1">
-      <div class="card-body w-30">
-        <div class="d-flex flex-column">
-          <h5>This gossip has <%= @gossip.comments.count %> comments.</h5>
+    <div id="comments-util" class="container m-5">
+      <%= render partial: "comments/comments_new", locals: { comment: @comment, gossip: @gossip } %>
+      <div id="comment-count" class="p-2 card d-flex <%= ['card-bg-1', 'card-bg-2', 'card-bg-3', 'card-bg-4', 'card-bg-5'].sample %> flex-wrap m-1">
+        <div class="card-body w-30">
+          <div class="d-flex flex-column">
+            <h5>This gossip has <%= @gossip.comments.count %> comments.</h5>
+          </div>
         </div>
       </div>
+      <%= render partial: "comments/comments_index", locals: { gossip: @gossip } %>
     </div>
-    <%= render partial: "comments/comments_index", locals: { gossip: @gossip } %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div id="comments-index">
   
   <% gossip.comments.each do |comment| %>
-    <div class="p-2 card d-flex flex-wrap m-1">
+    <div class="p-2 card <%= ['card-bg-1', 'card-bg-2', 'card-bg-3', 'card-bg-4', 'card-bg-5'].sample %> d-flex flex-wrap m-1">
       <div class="card-body w-30">
         <div class="d-flex flex-column">
           <h5 class="card-title">By: <%= comment.user.first_name %></h5>

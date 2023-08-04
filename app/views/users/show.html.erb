@@ -1,28 +1,33 @@
-<div class="d-flex flex-column justify-content-center align-items-center">
-  <div class="p-5 card w-50 card-bg-3" style="width: 18rem;">
+<div class="d-flex flex-column text-dark text-center justify-content-center align-items-center pt-5">
+  <h1>This is me:</h1>
+  <div class="p-5 card w-50 rounded-circle card-bg-3">
     <div class="card-body">
       <div class="d-flex justify-content-center">
         <div>
           <h3 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h3>
           <h5 class="card-title">Age: <%= @user.age %></h5>
           <h5 class="card-title">Email: <%#= @user.email %></h5>
-          <h5 class="card-title">City: <%= link_to @user.city.name , city_path(@user.city_id) %></h5>
+          <h5 class="card-title">City: <%= link_to @user.city.name , city_path(@user.city_id), class: "link-dark" %></h5>
           
           <p class="card-text"><%= @user.description %></p>
-          <% if check_if_current_user(@user.id) %>
+          <% if current_user.id == (@user.id) %>
             
-            <%= button_to "Delete user", user_path(@user.id), method: :delete %>
+            <%#= button_to "Delete user", user_path(@user.id), method: :delete, class: "btn btn-danger" %>
           <% end %>
 
         </div>
       </div>
     </div>
   </div>
-  <div id="user-gossip-by-user" class="container">
+  <div class="container d-flex flex-row justify-content-center m-5"> <% if current_user %>
+      <%= button_to 'Create Gossip', new_gossip_path, method: :get, class:'btn btn-dark' %>
+    <% end %>
+  </div>
+  <div id="user-gossip-by-user" class="container mt-5">
     <h1>My Gosip:</h1>
     <%= render partial: "gossip/index", locals: { gossips: @my_gossip} %>
   </div>
-  <div id="user-liked-gossip" class="container">
+  <div id="user-liked-gossip" class="container mt-5">
     <h1>Liked Gosip:</h1>
     <%= render partial: "gossip/index", locals: { gossips: @liked_gossip} %>
   </div>

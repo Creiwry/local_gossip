@@ -1,13 +1,12 @@
-<% color_options = ['card-bg-1', 'card-bg-2', 'card-bg-3'] %>
+<% color_options = ['card-bg-1', 'card-bg-2', 'card-bg-3', 'card-bg-4', 'card-bg-5'] %>
 <div class="d-flex flex-wrap justify-content-evenly">
-  <% color_options = ['card-bg-1', 'card-bg-2', 'card-bg-3'] %>
   <% gossips.each_with_index do |gossip, index| %>
-    <div class="p-3 m-2 card <%= color_options[index % color_options.length] %>" style="width: 18rem;" >
+    <div class="p-3 m-2 rounded-pill card <%= color_options[index % color_options.length] %>" style="width: 18rem;" >
       <div class="card-body">
         <div class="d-flex justify-content-center">
           <div>
-            <h5 class="card-title"><%= gossip.title %></h5>
-            <p class="card-text">By: <%= gossip.user.first_name %></p>
+            <h5 class="card-title text-dark"><%= gossip.title %></h5>
+            <p class="card-text text-dark">By: <%= gossip.user.first_name %></p>
           </div>
         </div>
 
@@ -15,7 +14,7 @@
 
           <div class="d-flex flex-column align-items-center">
             <%= render partial: "likes/likes", locals: { gossip: gossip} %>
-            <%= link_to 'Go to gossip', gossip_path(id: gossip.id), class:'btn btn-primary' %>
+            <%= link_to 'Go to gossip', gossip_path(id: gossip.id), class:'btn btn-dark' %>
           </div>
         <% end %>
       </div>

@@ -1,8 +1,11 @@
 <% color_options = ['card-bg-1', 'card-bg-2', 'card-bg-3'] %>
-<div class="container d-flex flex-wrap">
-  <% tags.each_with_index do |tag, index| %>
-    <span class="border border-dark d-inline-block <%= color_options[index % color_options.length] %> rounded-pill px-2 py-1 text-bg-light">
-    <%= link_to tag.title, tag_path(tag.id), class: "link-dark"  %></span>
-     
-  <% end %>
+<div class="container">
+  <div class="container d-flex flex-wrap">
+    <% tags.each_with_index do |tag, index| %>
+      <span class="border border-dark d-inline-block <%= color_options[index % color_options.length] %> rounded-pill px-2 py-1 text-bg-light">
+        <%= link_to tag.title, tag_path(tag.id), class: "link-dark"  %></span>
+
+    <% end %>
+  </div>
+
 </div>

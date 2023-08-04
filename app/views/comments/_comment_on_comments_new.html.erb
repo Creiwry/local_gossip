@@ -1,4 +1,13 @@
-<div id="comment-on-comments" class="container">
+<button 
+  type="button" 
+  class="btn btn-dark m-1"
+  data-bs-toggle="collapse"
+  data-bs-target="#comment-on-comments-new"
+  aria-expanded="false"
+  aria-controls="comment-on-comments-new">
+  Write a comment
+</button>
+<div id="comment-on-comments-new" class="container collapse">
   <div class="container m-2">
     <div class="d-flex flex-column">
       <%= form_with(model: Comment.new, url: comment_comments_path(comment), local: true) do |form| %>
@@ -7,7 +16,7 @@
         <br>
         <%= form.text_area :content, class: "form-control" %>
         <br>
-        <%= form.submit "Post", class:"btn btn-primary" %>
+        <%= form.submit "Post", class:"btn btn-dark" %>
       <% end %>
     </div>
   </div>
