@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: postgres
+  database: the_gossip_project_production
   username: the_gossip_project
   password: <%= ENV["THE_GOSSIP_PROJECT_DATABASE_PASSWORD"] %>
