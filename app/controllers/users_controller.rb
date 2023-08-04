@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = 'Registration successful'
       log_in(@user)
-      redirect_to users_path(@user)
+      redirect_to user_path(@user)
     else
       flash.now[:alert] = error_string(@user)
       render :new
