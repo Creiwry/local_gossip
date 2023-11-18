@@ -20,7 +20,14 @@
     <div class="container d-flex flex-row justify-content-center m-2">
       <%= button_to 'Find by tag', tags_path, method: :get, class:'btn btn-dark' %>
     </div>
+    <h3>Nearby Gossip</h3>
+    <p class="padded-text text-center fw-bolder">Scan the area for gossip</p>
+    <div class="d-flex justify-content-center">
+        <button data-controller="geolocation" data-action="click->geolocation#startGeolocation" class="btn btn-success">Scan</button>
+    </div>
+    <%= render partial: "gossip/index", locals: { gossips: @nearby_gossip } %>
 
+    <h3>All Gossip</h3>
     <%= render partial: "gossip/index", locals: { gossips: @gossips } %>
   </div>
 </div>

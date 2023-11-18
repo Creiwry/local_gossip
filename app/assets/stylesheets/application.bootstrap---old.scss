@@ -6,6 +6,12 @@ div.card {
   color: #fff;
 }
 
+.header-alert {
+  position: fixed !important;
+  top: 90px;
+  z-index: 9999;
+}
+
 nav, footer {
   background-color: #f9e784;
   color: #170312; 

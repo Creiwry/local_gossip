@@ -28,12 +28,8 @@ class UsersController < ApplicationController
   def update_location
     return unless current_user
 
-    current_user.latitude = params[:latitude]
-    current_user.longitude = params[:longitude]
-
-    if current_user.save
+    if current_user.update(latitude: params[:user][:latitude], longitude: params[:user][:longitude])
       session[:watchId] = params[:watchId]
-
     else
       head :internal_server_error
     end

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/team', to: 'static#team'
   get '/welcome/:name', to: 'static#welcome'
 
+  post '/update_location', to: 'users#update_location'
   # Defines the root path route ("/")
   # root "articles#index"
 end

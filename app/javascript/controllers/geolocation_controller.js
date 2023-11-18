@@ -1,4 +1,3 @@
-
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
@@ -72,7 +71,7 @@ export default class extends Controller {
   shouldUpdateUser(crd) {
     if (this.lastLatitude && this.lastLongitude) {
       const distance = this.calculateDistance(this.lastLatitude, this.lastLongitude, crd.latitude, crd.longitude);
-      if (distance < DISTANCE_THRESHOLD) {
+      if (distance < this.distanceThreshold()) {
         return false;
       }
     }

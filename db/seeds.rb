@@ -53,9 +53,12 @@ end
     description: Faker::Lorem.sentence(word_count: 10),
     email: Faker::Internet.email,
     age: rand(18..70),
-    city: City.all.sample
+    city: City.all.sample,
+    longitude: 2.4547635,
+    latitude: 45.146842
   )
 end
+
 tags = [
   'awkward',
   'thisisserioustho',

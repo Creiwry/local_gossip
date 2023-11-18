@@ -1,7 +1,14 @@
 class GossipController < ApplicationController
+  include GossipHelper
   before_action :authenticate_user, except: [:index]
+
   def index
     @gossips = Gossip.all
+    if current_user
+      @nearby_gossip = nearby_gossip || []
+    else
+      @nearby_gossip = []
+    end
   end
 
   def show
