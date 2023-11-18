@@ -45,17 +45,17 @@ cities.each do |city|
   City.create(name: city[:name], zip_code: city[:zip_code])
 end
 
-# 10.times do
-#   User.create!(
-#     first_name: Faker::Name.first_name,
-#     last_name: Faker::Name.last_name,
-#     password: Faker::Internet.password,
-#     description: Faker::Lorem.sentence(word_count: 10),
-#     email: Faker::Internet.email,
-#     age: rand(18..70),
-#     city: City.all.sample
-#   )
-# end
+10.times do
+  User.create!(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    password: 'password',
+    description: Faker::Lorem.sentence(word_count: 10),
+    email: Faker::Internet.email,
+    age: rand(18..70),
+    city: City.all.sample
+  )
+end
 tags = [
   'awkward',
   'thisisserioustho',
@@ -72,64 +72,64 @@ tags.each do |tag|
   Tag.create!(title: tag)
 end
 
-# 20.times do
-#   sentence = ""
-#   while sentence.length < 14
-#     word = Faker::Lorem.word
-#     break if (sentence.length + word.length + 1) > 14 # +1 for the space
+20.times do
+  sentence = ""
+  while sentence.length < 14
+    word = Faker::Lorem.word
+    break if (sentence.length + word.length + 1) > 14 # +1 for the space
 
-#     sentence += " " unless sentence.empty?
-#     sentence += word
-#   end
+    sentence += " " unless sentence.empty?
+    sentence += word
+  end
 
-#   gossip = Gossip.create!(
-#     title: sentence,
-#     content: Faker::Lorem.sentence(word_count: 20),
-#     user: User.all.sample
-#   )
+  gossip = Gossip.create!(
+    title: sentence,
+    content: Faker::Lorem.sentence(word_count: 20),
+    user: User.all.sample
+  )
 
-#   gossip.tags = Tag.all.sample(rand(1..3))
-# end
+  gossip.tags = Tag.all.sample(rand(1..3))
+end
 
-# 20.times do
-#   Comment.create!(
-#     content: Faker::Lorem.sentence(word_count: 10),
-#     commentable: Gossip.all.sample,
-#     user: User.all.sample
-#   )
-# end
+20.times do
+  Comment.create!(
+    content: Faker::Lorem.sentence(word_count: 10),
+    commentable: Gossip.all.sample,
+    user: User.all.sample
+  )
+end
 
-# 20.times do
-#   Comment.create!(
-#     content: Faker::Lorem.sentence(word_count: 10),
-#     commentable: Comment.all.sample,
-#     user: User.all.sample
-#   )
-# end
+20.times do
+  Comment.create!(
+    content: Faker::Lorem.sentence(word_count: 10),
+    commentable: Comment.all.sample,
+    user: User.all.sample
+  )
+end
 
-# 20.times do
-#   likeable = [Gossip, Comment].sample.all.sample
+20.times do
+  likeable = [Gossip, Comment].sample.all.sample
 
-#   Like.create!(
-#     likeable: likeable,
-#     user: User.all.sample
-#   )
-# end
+  Like.create!(
+    likeable: likeable,
+    user: User.all.sample
+  )
+end
 
-# 30.times do
-#   PrivateMessage.create!(
-#     content: Faker::Lorem.sentence(word_count: 15),
-#     sender: User.all.sample
-#   )
-# end
+30.times do
+  PrivateMessage.create!(
+    content: Faker::Lorem.sentence(word_count: 15),
+    sender: User.all.sample
+  )
+end
 
-# PrivateMessage.all.each do |message|
-#   recipients = User.all.sample(rand(1..5))
+PrivateMessage.all.each do |message|
+  recipients = User.all.sample(rand(1..5))
 
-#   recipients.each do |recipient|
-#     MessageRecipient.create!(
-#       private_message: message,
-#       recipient: recipient
-#     )
-#   end
-# end
+  recipients.each do |recipient|
+    MessageRecipient.create!(
+      private_message: message,
+      recipient: recipient
+    )
+  end
+end
