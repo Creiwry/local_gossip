@@ -25,6 +25,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_location
+    return unless current_user
+
+    current_user.latitude = params[:latitude]
+    current_user.longitude = params[:longitude]
+
+    if current_user.save
+      session[:watchId] = params[:watchId]
+
+    else
+      head :internal_server_error
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
@@ -51,7 +65,3 @@ class UsersController < ApplicationController
     )
   end
 end
-
-
-
-
